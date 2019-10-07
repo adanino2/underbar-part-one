@@ -167,20 +167,18 @@
   _.findIndex=function(array,value){
 
     var index=-1;
-    var arr=[];
-    arr=array;
-    var i=0;
-    do{
-
-      var haha=value(arguments[0][i]);
-      if(haha===true){
-
-        index=i;
-      }
-
-
-    i+=1;
-    }while(i<arr.length && index===-1);
+ 	
+ 	var even = function even(value) {
+  return value % 2 === 0;
+};
+ 	
+ 	for(var i=0;i<array.length;i++){
+        
+ 		if(even(array[i])===true){
+ 			index=i;
+ 			break;
+ 		}
+ 	}
 
     return index;
 
