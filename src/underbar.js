@@ -9,6 +9,8 @@
   _.identity = function(val) {
     /* START SOLUTION */
 
+     return val;
+
     /* END SOLUTION */
   };
 
@@ -28,6 +30,34 @@
   _.first = function(array, n) {
     /* START SOLUTION */
 
+   if(Array.isArray(array) && typeof(n)=="undefined"){
+
+     return array[0];
+
+   }else if (Array.isArray(array) && typeof(n)=="number" && n>array.length){
+
+        return array;
+
+   }else if(Array.isArray(array) && typeof(n)=="number" && n<=array.length){
+
+   	return array.slice(0,n);
+   
+   }else if(Array.isArray(array) && array.length===0){
+
+   	return undefined;
+   
+   }else if(!Array.isArray(array) && typeof(n)!=="undefined"){
+
+   	return [];
+   
+   }else{
+
+   	return undefined;
+   }
+
+
+
+
     /* END SOLUTION */
   };
 
@@ -35,6 +65,24 @@
   // last element.
   _.last = function(array, n) {
     /* START SOLUTION */
+
+    if(Array.isArray(array) && typeof(n)==="undefined") {
+
+    	return array[array.length-1];
+  
+    }else if(Array.isArray(array) && array.length>=n && n>0) {
+
+    	return array.slice(n-1,array.length);
+    
+    }else if(Array.isArray(array) && array.length<n) {
+
+    	return array;
+
+    }else if(Array.isArray(array) && n<=0) {
+
+    	return [];
+    }
+
 
     /* END SOLUTION */
   };
@@ -47,6 +95,27 @@
   _.each = function(collection, iterator) {
     /* START SOLUTION */
 
+      if(Array.isArray(collection)){
+
+        for(var i=0;i<collection.length;i++){
+
+        iterator(collection[i], i, collection);
+  
+         }
+    }else {
+
+        for(var i in collection){
+
+          iterator(collection[i], i, collection);
+
+        }
+
+
+
+    }
+
+
+
     /* END SOLUTION */
   };
 
@@ -55,7 +124,66 @@
   _.indexOf = function(array, target){
     /* START SOLUTION */
 
-    /* END SOLUTION */
+    
+    var index=-1;
+
+   if(typeof arguments[2]==="undefined" ){  
+      for(var i=0;i<array.length;i++){
+
+      if(array[i]===target){
+        index=i;
+        break;
+      }
+
+    }
+
+    return index;
+
+
+   } else if(typeof arguments[2]==="number"){
+
+    for(var i=arguments[2];i<array.length;i++){
+
+      if(array[i]===target){
+
+        index=i; 
+        break;
+      }
+
+    }
+
+    return index;
+
+   }else if(typeof arguments[2]==="boolean"){
+
+
+   }
+
+
+ 
+    /* END SOLUTION */  
+  };
+
+  _.findIndex=function(array,value){
+
+    var index=-1;
+    var arr=[];
+    arr=array;
+    var i=0;
+    do{
+
+      var haha=value(arguments[0][i]);
+      if(haha===true){
+
+        index=i;
+      }
+
+
+    i+=1;
+    }while(i<arr.length && index===-1);
+
+    return index;
+
   };
 
   // Return all elements of an array that pass a truth test.
@@ -120,5 +248,8 @@
 
     /* END SOLUTION */
   };
+
+
+ 
 
 }());
